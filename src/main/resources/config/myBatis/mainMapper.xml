@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.elastic.elasticDemo.repository.MainDAO">
+
+    <select id="getUserList" resultType="com.elastic.elasticDemo.vo.UserVO">
+        select nm_people
+        from tbl_people
+    </select>
+
+    <select id="getBusinessList" resultType="com.elastic.elasticDemo.vo.BusinessVO">
+        SELECT
+            CD_BUSINESS
+             ,NM_PEOPLE
+             ,TITLE
+             ,HOST
+             ,ADDRESS
+             ,convert(date, YMD_START) as ymd_start
+             ,convert(date, YMD_END) as ymd_end
+             ,FL_EVERY
+             ,FL_FINISH
+             ,SUMMARY
+             ,convert(date, DT_WRITE) as dt_write
+             ,BIZ_TAG
+             ,NM_EDUCATION
+             ,NM_PAY
+             ,NM_TYPE
+             ,WORKDETAIL
+             ,CONVERT(DATETIME, stuff(dt_sort,9,6,'') + ' ' + STUFF(STUFF(stuff(dt_sort,1,8,''), 3, 0, ':'), 6, 0, ':'), 120) as DT_SORT
+             ,THEME_TAG
+             ,CD_WORK1
+             ,CD_WORK2
+        FROM VW_BP_BUSINESS
+        ORDER BY DT_SORT
+    </select>
+</mapper>
