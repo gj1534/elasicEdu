@@ -1,0 +1,2 @@
+com/elastic/elasticDemo/ElasticDemoApplicationTests.java
+ com.elastic.elasticDemo.ElasticDemoApplicationTests
